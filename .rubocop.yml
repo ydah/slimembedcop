@@ -1,0 +1,16 @@
+require:
+  - rubocop-performance
+  - rubocop-rake
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+
+Layout/LineLength:
+  Enabled: false
+
+Metrics:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
