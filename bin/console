@@ -3,9 +3,13 @@
 
 require "bundler/setup"
 require "slimembedcop"
+require "slimi"
 
 # You can add fixtures and/or initialization code here to make experimenting
 # with your gem easier. You can also use a different console, if you like.
 
-require "irb"
-IRB.start(__FILE__)
+source = File.read("sample.slim")
+p Slimi::Parser.new(file: "../sample.slim").call(source)
+
+# require "irb"
+# IRB.start(__FILE__)
