@@ -11,4 +11,5 @@ module Slimembedcop
   autoload :PathFinder, "slimembedcop/path_finder"
   autoload :RubyOffenseCollector, "slimembedcop/ruby_offense_collector"
   autoload :Runner, "slimembedcop/runner"
+  autoload :TemplateCorrector, "slimembedcop/template_corrector"
 end

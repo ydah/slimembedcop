@@ -6,10 +6,10 @@ module Slimembedcop
   # Collect RuboCop offenses from Ruby code.
   class RubyOffenseCollector
     class << self
-      def run(path, config, source)
+      def run(path, config, source, autocorrect)
         return [] unless rubocop_processed_source(path, config, source).valid_syntax?
 
-        rubocop_team(config).investigate(rubocop_processed_source(path, config, source)).offenses.reject(&:disabled?)
+        rubocop_team(config, autocorrect).investigate(rubocop_processed_source(path, config, source)).offenses.reject(&:disabled?)
       end
 
       private
@@ -33,8 +33,14 @@ module Slimembedcop
         end
       end
 
-      def rubocop_team(config)
-        ::RuboCop::Cop::Team.new(registry, config, display_cop_names: true, extra_details: true, stdin: "")
+      def rubocop_team(config, autocorrect)
+        ::RuboCop::Cop::Team.new(
+          registry,
+          config,
+          autocorrect: autocorrect,
+          display_cop_names: true,
+          extra_details: true,
+          stdin: "")
       end
     end
   end

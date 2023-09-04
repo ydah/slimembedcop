@@ -15,7 +15,7 @@ module Slimembedcop
         formatter = ::RuboCop::Formatter::ProgressFormatter.new($stdout, color: options[:color])
         config = ConfigGenerator.run(DEFAULT_CONFIG_PATH, options[:forced_config_path])
         paths = PathFinder.run(DEFAULT_PATH_PATTERNS, config.for_all_cops["Exclude"], argv)
-        offenses = Runner.run(paths, formatter, config)
+        offenses = Runner.run(paths, formatter, config, options[:autocorrect])
         exit(offenses.empty? ? 0 : 1)
       end
 
@@ -26,6 +26,10 @@ module Slimembedcop
         parser = ::OptionParser.new
         parser.banner = "Usage: slimembedcop [options] [file1, file2, ...]"
         parser.version = VERSION
+        parser.on('-a', '--autocorrect', 'Autocorrect offenses.') do
+          p "autocorrect"
+          options[:autocorrect] = true
+        end
         parser.on("-c", "--config=", "Specify configuration file. (default: #{DEFAULT_CONFIG_PATH} or .rubocop.yml)") do |file_path|
           options[:forced_config_path] = file_path
         end
