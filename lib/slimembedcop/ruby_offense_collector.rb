@@ -40,7 +40,8 @@ module Slimembedcop
           autocorrect: autocorrect,
           display_cop_names: true,
           extra_details: true,
-          stdin: "")
+          stdin: ""
+        )
       end
     end
   end

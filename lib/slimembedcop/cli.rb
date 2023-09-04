@@ -26,7 +26,7 @@ module Slimembedcop
         parser = ::OptionParser.new
         parser.banner = "Usage: slimembedcop [options] [file1, file2, ...]"
         parser.version = VERSION
-        parser.on('-a', '--autocorrect', 'Autocorrect offenses.') do
+        parser.on("-a", "--autocorrect", "Autocorrect offenses.") do
           p "autocorrect"
           options[:autocorrect] = true
         end
