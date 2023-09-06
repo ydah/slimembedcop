@@ -39,9 +39,7 @@ module Slimembedcop
           index += line.length
         end
 
-        if inside_ruby
-          result << [begin_pos, index - 1]
-        end
+        result << [begin_pos, index - 1] if inside_ruby
 
         result
       end
