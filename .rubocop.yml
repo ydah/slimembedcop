@@ -5,11 +5,31 @@ require:
 
 AllCops:
   NewCops: enable
+  SuggestExtensions: false
+  TargetRubyVersion: 2.7
 
 Layout/LineLength:
   Enabled: false
 
 Metrics:
+  Enabled: false
+
+RSpec/AnyInstance:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/ImplicitSubject:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
+
+Style/Documentation:
   Enabled: false
 
 Style/StringLiterals:
