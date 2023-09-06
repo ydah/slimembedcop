@@ -24,7 +24,7 @@ module Slimembedcop
         leading_spaces = 0
         inside_ruby = false
         @source.each_line do |line|
-          if line.strip.start_with?("ruby:")
+          if block_start?(line)
             leading_spaces = line.match(/^\s*/)[0].length
             inside_ruby = true
             begin_pos = index += line.length
@@ -39,7 +39,15 @@ module Slimembedcop
           index += line.length
         end
 
+        if inside_ruby
+          result << [begin_pos, index - 1]
+        end
+
         result
+      end
+
+      def block_start?(line)
+        line.strip.start_with?("ruby:")
       end
 
       def block_end?(line, leading_spaces)
