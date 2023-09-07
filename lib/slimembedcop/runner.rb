@@ -6,78 +6,81 @@ require "stringio"
 module Slimembedcop
   # Run investigation and auto-correction.
   class Runner
-    class << self
-      def run(paths, formatter, config, autocorrect)
-        @autocorrect = autocorrect
+    def initialize(paths, formatter, options, config)
+      @paths = paths
+      @formatter = formatter
+      @autocorrect = options.autocorrect
+      @config = config
+    end
 
-        on_started(formatter, paths)
-        result = run_in_parallel(paths, formatter, config)
-        on_finished(paths, formatter, result)
-        result.flat_map { |(_, offenses)| offenses }
-      end
+    def run
+      on_started
+      result = run_in_parallel
+      on_finished(result)
+      result.flat_map { |(_, offenses)| offenses }
+    end
 
-      private
+    private
 
-      def on_started(formatter, paths)
-        formatter.started(paths)
-      end
+    def on_started
+      @formatter.started(@paths)
+    end
 
-      def run_in_parallel(paths, formatter, config)
-        ::Parallel.map(paths) do |path|
-          offenses_per_file = []
-          max_trials_count.times do
-            on_file_started(formatter, path)
-            source = ::File.read(path)
-            offenses = investigate(path, config, source)
-            offenses_per_file |= offenses
-            break if offenses.none?(&:correctable?)
+    def run_in_parallel
+      ::Parallel.map(@paths) do |path|
+        offenses_per_file = []
+        max_trials_count.times do
+          on_file_started(path)
+          source = ::File.read(path)
+          offenses = investigate(path, source)
+          offenses_per_file |= offenses
+          break if offenses.none?(&:correctable?)
 
-            next unless @autocorrect
+          next unless @autocorrect
 
-            correct(path, offenses, source)
-          end
-
-          on_file_finished(path, formatter, offenses_per_file)
-          [path, offenses_per_file]
+          correct(path, offenses, source)
         end
-      end
 
-      def max_trials_count
-        if @autocorrect
-          7
-        else
-          1
-        end
+        on_file_finished(path, offenses_per_file)
+        [path, offenses_per_file]
       end
+    end
 
-      def investigate(path, config, source)
-        OffenseCollector.run(path, config, source, @autocorrect)
+    def max_trials_count
+      if @autocorrect
+        7
+      else
+        1
       end
+    end
 
-      def correct(path, offenses, source)
-        rewritten_source = TemplateCorrector.new(path, offenses, source).run
-        ::File.write(path, rewritten_source)
+    def investigate(path, source)
+      OffenseCollector.run(path, @config, source, @autocorrect)
+    end
+
+    def correct(path, offenses, source)
+      rewritten_source = TemplateCorrector.new(path, offenses, source).run
+      ::File.write(path, rewritten_source)
+    end
+
+    def on_file_started(path)
+      @formatter.file_started(path, {})
+    end
+
+    def on_file_finished(path, offenses)
+      @formatter.file_finished(path, offenses)
+    end
+
+    def on_finished(result)
+      original = @formatter.output
+      @formatter.instance_variable_set(:@output, ::StringIO.new)
+      result.each do |(path, offenses)|
+        on_file_started(path)
+        on_file_finished(path, offenses)
       end
+      @formatter.instance_variable_set(:@output, original)
 
-      def on_file_started(formatter, path)
-        formatter.file_started(path, {})
-      end
-
-      def on_file_finished(path, formatter, offenses)
-        formatter.file_finished(path, offenses)
-      end
-
-      def on_finished(paths, formatter, result)
-        original = formatter.output
-        formatter.instance_variable_set(:@output, ::StringIO.new)
-        result.each do |(path, offenses)|
-          on_file_started(formatter, path)
-          on_file_finished(path, formatter, offenses)
-        end
-        formatter.instance_variable_set(:@output, original)
-
-        formatter.finished(paths)
-      end
+      @formatter.finished(@paths)
     end
   end
 end
