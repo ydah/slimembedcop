@@ -7,6 +7,7 @@ module Slimembedcop
   autoload :ConfigGenerator, "slimembedcop/config_generator"
   autoload :Extractor, "slimembedcop/extractor"
   autoload :Offense, "slimembedcop/offense"
+  autoload :Option, "slimembedcop/option"
   autoload :OffenseCollector, "slimembedcop/offense_collector"
   autoload :PathFinder, "slimembedcop/path_finder"
   autoload :RubyOffenseCollector, "slimembedcop/ruby_offense_collector"

@@ -4,4 +4,4 @@
 $LOAD_PATH.unshift File.expand_path("../lib", __dir__)
 require "slimembedcop"
 
-exit Slimembedcop::Cli.run(ARGV)
+exit Slimembedcop::Cli.new(ARGV).run
