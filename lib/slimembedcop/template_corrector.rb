@@ -18,16 +18,16 @@ module Slimembedcop
 
     private
 
+    def source_buffer
+      ::Parser::Source::Buffer.new(@path, source: @source)
+    end
+
     def corrections
       @offenses.select(&:corrector).map do |offense|
         lambda do |corrector|
           corrector.import!(offense.corrector, offset: offense.offset)
         end
       end
-    end
-
-    def source_buffer
-      ::Parser::Source::Buffer.new(@path, source: @source)
     end
   end
 end

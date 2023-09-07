@@ -55,7 +55,7 @@ module Slimembedcop
     end
 
     def investigate(path, source)
-      OffenseCollector.run(path, @config, source, @autocorrect)
+      OffenseCollector.new(path, @config, source, @autocorrect).run
     end
 
     def correct(path, offenses, source)
