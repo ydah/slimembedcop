@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "slimi"
-
 module Slimembedcop
   # Extract Ruby codes from Slim embedded code.
   class Extractor
