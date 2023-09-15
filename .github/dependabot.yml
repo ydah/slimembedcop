@@ -1,0 +1,14 @@
+version: 2
+updates:
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    reviewers:
+      - ydah
+    assignees:
+      - ydah
+    commit-message:
+      prefix: fix
+      prefix-development: chore
+      include: scope
