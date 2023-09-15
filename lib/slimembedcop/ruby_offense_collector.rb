@@ -5,11 +5,12 @@ require 'rubocop'
 module Slimembedcop
   # Collect RuboCop offenses from Ruby code.
   class RubyOffenseCollector
-    def initialize(path, config, source, autocorrect)
+    def initialize(path, config, source, autocorrect, debug)
       @path = path
       @config = config
       @source = source
       @autocorrect = autocorrect
+      @debug = debug
     end
 
     def run
@@ -32,6 +33,7 @@ module Slimembedcop
         registry,
         @config,
         autocorrect: @autocorrect,
+        debug: @debug,
         display_cop_names: true,
         extra_details: true,
         stdin: ''

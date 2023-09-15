@@ -3,7 +3,7 @@
 module Slimembedcop
   # Command line options.
   class Option
-    attr_reader :version, :autocorrect, :forced_config_path, :color,
+    attr_reader :version, :autocorrect, :forced_config_path, :color, :debug,
                 :args, :default_config_path, :default_path_patterns
 
     def initialize(argv)
@@ -12,6 +12,7 @@ module Slimembedcop
       @autocorrect = false
       @forced_config_path = nil
       @color = nil
+      @debug = false
       @default_config_path = File.expand_path('../default.yml', __dir__)
       @default_path_patterns = %w[**/*.slim].freeze
 
@@ -20,6 +21,7 @@ module Slimembedcop
       opt.on('-a', '--autocorrect', 'Autocorrect offenses.') { @autocorrect = true }
       opt.on('-c', '--config=', 'Specify configuration file.') { |path| @forced_config_path = path }
       opt.on('--[no-]color', 'Force color output on or off.') { |value| @color = value }
+      opt.on('-d', '--debug', 'Display debug info.') { |value| @debug = value }
       @args = opt.parse(argv)
     end
   end

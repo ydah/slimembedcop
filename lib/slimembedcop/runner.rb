@@ -10,6 +10,7 @@ module Slimembedcop
       @paths = paths
       @formatter = formatter
       @autocorrect = options.autocorrect
+      @debug = options.debug
       @config = config
     end
 
@@ -55,7 +56,7 @@ module Slimembedcop
     end
 
     def investigate(path, source)
-      OffenseCollector.new(path, @config, source, @autocorrect).run
+      OffenseCollector.new(path, @config, source, @autocorrect, @debug).run
     end
 
     def correct(path, offenses, source)
