@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require "parallel"
-require "stringio"
+require 'parallel'
+require 'stringio'
 
 module Slimembedcop
   # Run investigation and auto-correction.

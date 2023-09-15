@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require "forwardable"
+require 'forwardable'
 
-require "parser"
-require "rubocop"
+require 'parser'
+require 'rubocop'
 
 module Slimembedcop
   # Wraps a RuboCop offense.

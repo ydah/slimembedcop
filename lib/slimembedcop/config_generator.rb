@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "rubocop"
+require 'rubocop'
 
 module Slimembedcop
   # Generates a configuration for RuboCop.

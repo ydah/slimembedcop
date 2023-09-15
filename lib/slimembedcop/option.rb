@@ -12,14 +12,14 @@ module Slimembedcop
       @autocorrect = false
       @forced_config_path = nil
       @color = nil
-      @default_config_path = File.expand_path("../default.yml", __dir__)
+      @default_config_path = File.expand_path('../default.yml', __dir__)
       @default_path_patterns = %w[**/*.slim].freeze
 
-      opt.banner = "Usage: slimembedcop [options] [file1, file2, ...]"
-      opt.on("-v", "--version", "Display version.") { @version = true }
-      opt.on("-a", "--autocorrect", "Autocorrect offenses.") { @autocorrect = true }
-      opt.on("-c", "--config=", "Specify configuration file.") { |path| @forced_config_path = path }
-      opt.on("--[no-]color", "Force color output on or off.") { |value| @color = value }
+      opt.banner = 'Usage: slimembedcop [options] [file1, file2, ...]'
+      opt.on('-v', '--version', 'Display version.') { @version = true }
+      opt.on('-a', '--autocorrect', 'Autocorrect offenses.') { @autocorrect = true }
+      opt.on('-c', '--config=', 'Specify configuration file.') { |path| @forced_config_path = path }
+      opt.on('--[no-]color', 'Force color output on or off.') { |value| @color = value }
       @args = opt.parse(argv)
     end
   end

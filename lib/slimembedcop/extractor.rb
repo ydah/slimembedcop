@@ -43,7 +43,7 @@ module Slimembedcop
     end
 
     def block_start?(line)
-      line.strip.start_with?("ruby:")
+      line.strip.start_with?('ruby:')
     end
 
     def block_end?(line, leading_spaces)

@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-require "pathname"
-require "set"
+require 'pathname'
+require 'set'
 
 module Slimembedcop
   # Collect file paths from given path patterns.
   class PathFinder
     def initialize(options, config)
       @default_patterns = options.default_path_patterns
-      @exclude_patterns = config.for_all_cops["Exclude"] || []
+      @exclude_patterns = config.for_all_cops['Exclude'] || []
       @path_patterns = options.args
     end
 

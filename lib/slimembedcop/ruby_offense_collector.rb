@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "rubocop"
+require 'rubocop'
 
 module Slimembedcop
   # Collect RuboCop offenses from Ruby code.
@@ -34,7 +34,7 @@ module Slimembedcop
         autocorrect: @autocorrect,
         display_cop_names: true,
         extra_details: true,
-        stdin: ""
+        stdin: ''
       )
     end
 
