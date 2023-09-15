@@ -1,8 +1,14 @@
-Style/FrozenStringLiteralComment:
-  Enabled: false
 Layout/TrailingEmptyLines:
   Enabled: false
+
 Layout/InitialIndentation:
   Enabled: false
-Lint/CircularArgumentReference:
-  Enabled: true
+
+Lint/UselessAssignment:
+  Enabled: false
+
+Naming/FileName:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
