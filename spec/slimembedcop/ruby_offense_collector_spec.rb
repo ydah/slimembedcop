@@ -2,7 +2,7 @@
 
 RSpec.describe Slimembedcop::RubyOffenseCollector do
   describe '#run' do
-    subject { described_class.new('dummy.slim', config, source, false).run }
+    subject { described_class.new('dummy.slim', config, source, false, false).run }
 
     let(:option) { Slimembedcop::Option.new('') }
     let(:config) { Slimembedcop::ConfigGenerator.new(option).run }
