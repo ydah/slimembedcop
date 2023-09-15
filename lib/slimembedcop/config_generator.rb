@@ -51,7 +51,7 @@ module Slimembedcop
       if instance_variable_defined?(:@implicit_config_path)
         @implicit_config_path
       else
-        @implicit_config_path = %w[.slimembedcop.yml .rubocop.yml].find do |path|
+        @implicit_config_path = %w[.slimembedcop.yml].find do |path|
           ::File.exist?(path)
         end
       end
