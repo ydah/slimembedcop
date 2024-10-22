@@ -1,5 +1,10 @@
 # SlimEmbedCop
 
+[![Gem Version](https://badge.fury.io/rb/slimembedcop.svg)](https://badge.fury.io/rb/slimembedcop)
+[![CI](https://github.com/ydah/slimembedcop/actions/workflows/ci.yml/badge.svg)](https://github.com/ydah/slimembedcop/actions/workflows/ci.yml)
+[![RubyDoc](https://img.shields.io/badge/%F0%9F%93%9ARubyDoc-documentation-informational.svg)](https://www.rubydoc.info/gems/slimembedcop)
+
+
 [RuboCop](https://github.com/rubocop/rubocop) runner for [Ruby code embedded in Slim](https://github.com/slim-template/slim#embedded-engines-markdown-).
 
 ## Installation
