@@ -29,7 +29,7 @@ module Slimembedcop
     end
 
     def team
-      ::RuboCop::Cop::Team.new(
+      ::RuboCop::Cop::Team.mobilize(
         registry,
         @config,
         autocorrect: @autocorrect,

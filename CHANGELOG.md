@@ -1,5 +1,7 @@
 ## Unreleased
 
+- Fix warnings for use of `Team.new`.
+
 ## 0.2.0 - 2023-09-16
 
 - Disable unnecessary cop for slimembedcop.
