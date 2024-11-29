@@ -1,5 +1,7 @@
 ## Unreleased
 
+## 1.0.0 - 2024-11-29
+
 - Fix warnings for use of `Team.new`.
 
 ## 0.2.0 - 2023-09-16
